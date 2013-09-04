@@ -2,13 +2,15 @@
 
 	<div class='container'>
 	
-		<a href='nouveau-client.php' class='btn btn-success'>
-			<i class='icon-plus'></i>
-			nouveau client
-		</a>
-		
-		<br />
-		<br />
+		<div class='row'>
+			<div class='span9'><h1>Gestion de la clientèle</h1></div>
+			<div class='span3'>
+				<a href='nouveau-client.php' class='btn btn-success pull-right'>
+					<i class='icon-plus'></i>
+					nouveau client
+				</a>
+			</div>			
+		</div>
 	
 		<table class='table table-bordered'>
 			<tr>
