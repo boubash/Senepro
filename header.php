@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 
 	<head>
 		<link rel='stylesheet' href='css/bootstrap.css' type="text/css" />
@@ -14,7 +14,7 @@
 					<ul class='nav'>
 						<li><a href="acceuil.php">Acceuil</a></li>
 						<li><a href="client.php">Client</a></li>
-						<li><a href="materiel.php">Mat�riel</a></li>
+						<li><a href="materiel.php">Matériel</a></li>
 						<li><a href="commande.php">Commande</a></li>
 					</ul>				
 				</div>		

@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="row">
 		<div class="span9"><h1>Ajout Client</h1></div>
-		<div class="span3"><a href="client.php" class="btn pull-right" >Liste Clients</a></div>
+		<div class="span3"><a href="client.php" class="btn pull-right">Liste Clients</a></div>
 	
 	</div>
 	 
