@@ -38,7 +38,8 @@
 										<td>".$l[2]."</td>
 										<td>".$l[3]."</td>
 										<td>".$l[4]."</td>
-										<td><a href=\"suppression.php?matricule=".$l['matricule']."\" onclick=\"return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));\" ><img src=\"b_drop.png\"></a></td> 
+										<td><a href=\"modification-client1.php?matricule=".$l['0']."\"><img src=\"img/b_edit.png\" title=\"Modifier\"></a>
+										<td><a href=\"suppression.php?matricule=".$l['0']."\" onclick=\"return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));\" ><img src=\"img/b_drop.png\"></a></td> 
 									</tr>";
 								 }
 					echo"</table>";
