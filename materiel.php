@@ -35,7 +35,7 @@
 									<td>".$l[0]."</td>
 									<td>".$l[1]."</td>
 									<td>".$l[2]."</td>
-									<td><a href=\"suppression.php?matricule=".$l['matricule']."\" onclick=\"return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));\" ><img src=\"b_drop.png\"></a></td> 
+									<td><a href=\"suppression.php?matricule=".$l['matricule']."\" onclick=\"return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));\" ><img src=img\"b_drop.png\"></a></td> 
 					
 								</tr>";
 
