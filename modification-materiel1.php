@@ -1,45 +1,44 @@
-
 <?php include('header.php') ?>
 
- <?php
+
+<?php
    include("conexion.php");
+  
+          $id=$_GET["matricule"] ;
 
-    $id=$_GET["matricule"] ;
+          $req="SELECT * FROM materiel WHERE id_materiel =".$id;
 
-     $req="SELECT * FROM materiel WHERE matricule =".$id;
-     
-      $exe=mysql_query($sql);
- 
-      if($l=mysql_fetch_array($exe))
-      {
+          $exe=mysql_query($req);
 
+            if($l=mysql_fetch_array($exe))
+          {
   ?>
 
-        <form method="POST" name="insertion" action="modification-materiel2.php" >
+        <form name="insertion" action="modification-materiel2.php" method="POST">
 
-          <input type="hidden" name="id_materiel" value="<?php echo $id_matiere ;?>">
+          <input type="hidden" name="num" value="<?php echo $id_materiel ;?>">
 
           <table class='table table-bordered'>
 
-              <tr >
-                <td>Designation</td>
-                <td><input type="text" name="designation" value="<?php echo $l['designation'] ;?>"></td>
-              </tr>
+             <tr align="center">
+                <td>d&aecut;signation</td>
+                <td><input type="text" name="designation" value="<?php echo $l[1] ;?>"></td>
+            </tr>
 
-              <tr >
-                <td>Prix</td>
-                <td><input type="text" name="prix" value="<?php echo $l['prix'] ;?>"></td>
-              </tr>
-             
-              <tr >
-                <td ><input type="submit" value="modifier"></td>
-              </tr>
+               <tr align="center">
+                 <td>prix</td>
+                 <td><input type="text" name="prix" value="<?php echo $l[2] ;?>"></td>
+               </tr>
+    
+               <tr align="center">
+                 <td colspan="2"><input type="submit" value="modifier"></td>
+               </tr>
 
           </table>
+
         </form>
   <?php
   }
-
   ?>
 
 <?php include('footer.php') ?> 
