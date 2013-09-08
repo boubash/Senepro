@@ -1,22 +1,17 @@
-<?php
+﻿<?php
 	if(isset($_POST['ok']))
 	{
 		include("conexion.php");
+
 		extract($_POST);
+
 		$req="insert into client values('','$nom','$pnom','$adr','$tel')";
+
 		$exe=mysql_query($req);
-		if($exe)
-			{
-				echo "insertion réussi";
-			}else{
-					echo "erreur";
-				  }
-				mysql_error();
+		header("Location:client.php");
+		
 	}
 ?>
-
-
-
 
 <?php include('header.php') ?>
 
@@ -41,9 +36,9 @@
 			
 				<input type="text" name="adr" class="input-large" placeholder="Adresse:">
 				
-				<input type="text" name="tel" class="input-large" placeholder="T&eacute;l&eacute;tephone">
+				<input type="text" name="tel" class="input-large" placeholder="Téléphone:">
 
-				<input type="submit" name="ok" value="Ajouter">  
+				<input type="submit" class="btn btn-success" name="ok" value="Ajouter">  
 
     </form>
 </div>
