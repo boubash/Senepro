@@ -24,25 +24,25 @@
 			
 			<?php // ajouter les lignes provenant de la base 
 
-						  include("conexion.php");
+			    include("conexion.php");
 
-							$req="select * from client ";
+				$req="select * from client ";
 
-							$exe=mysql_query($req);
+				$exe=mysql_query($req);
 
-							    while($l= mysql_fetch_array($exe))
-							    {
+			    while($l= mysql_fetch_array($exe))
+				{
 							    	
-								echo"<tr>
-										<td>".$l[1]."</td>
-										<td>".$l[2]."</td>
-										<td>".$l[3]."</td>
-										<td>".$l[4]."</td>
-										<td><a href=\"modification-client1.php?matricule=".$l['0']."\"><img src=\"img/b_edit.png\" title=\"Modifier\"></a>
-										<td><a href=\"suppression.php?matricule=".$l['0']."\" onclick=\"return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));\" ><img src=\"img/b_drop.png\"></a></td> 
-									</tr>";
-								 }
-					echo"</table>";
+					echo"<tr>
+						<td>".$l[1]."</td>
+						<td>".$l[2]."</td>
+						<td>".$l[3]."</td>
+						<td>".$l[4]."</td>
+						<td><a href=\"modification-client1.php?matricule=".$l['0']."\"><img src=\"img/b_edit.png\" title=\"Modifier\"></a>
+						<td><a href=\"suppression-client.php?matricule=".$l['0']."\" onclick=\"return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));\" ><img src=\"img/b_drop.png\" title=\"supprimer\"></a></td> 
+						</tr>";
+				}
+		echo"</table>";
 			?>
 		
 	</div>
