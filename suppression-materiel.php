@@ -11,11 +11,11 @@
 
   if($exe)
   {
-    echo("La supprimer") ;
-include("materiel.php");
+    
+header("Location:materiel.php");
   }
   else
   {
-    echo("La suppression a echouee") ;
+    echo("La suppression a echoue");
   }
 ?>

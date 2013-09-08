@@ -3,16 +3,19 @@
  
   $id  = $_GET['matricule'] ;
   
-  $sql = "DELETE FROM client WHERE id_client = ".$id ;    
+  $sql = "DELETE FROM client WHERE id_client = ".$id ;
+    
 
   $exe = mysql_query($sql) ;
  
+
   if($exe)
   {
-    echo("La supprimer") ;
+   
+header("Location:client.php");
   }
   else
   {
-    echo("La suppression à échouée") ;
+    echo("La suppression a echoue") ;
   }
 ?>
