@@ -1,32 +1,33 @@
 <?php
- include("connexion.php");
+ include("conexion.php");
 
- 
-          $nom=$_POST['nom'] ;
-        $prenom=$_POST['prenom'] ;
-        $adresse=$_POST['adresse'];
-        $telephone=$_POST['telephone']
-      
-       $id= $_POST['id_client'] ;
- 
+
+  $nomc=$_POST['nom'] ;
+  $prenomc=$_POST['prenom'] ;
+  $adressec=$_POST['adresse'];
+  $telephonec=$_POST['telephone'];
+  $id= $_POST['id_cli'] ;
+
   $sql = "UPDATE client
-            SET nom='$nom', 
-                       prenom='$prenom', 
-                       adresse='$adresse',
-                       telephone='$telephone'
+            SET nom='$nomc', 
+                       prenom='$prenomc', 
+                       adresse='$adressec',
+                       telephone='$telephonec'
 	          
-           WHERE id_client='$id' " ;
+           WHERE id_client=$id";
  
-
+echo $sql;
   $exe=mysql_query($sql);
+  
  
   if($exe)
   {
-    echo("La modification à été correctement effectuée") ;
-include("modification-client1.php.php");
+   header("Location:client.php");
+
   }
   else
   {
-    echo("La modification à échouée") ;
+    echo("echec") ;
+    echo mysql_error();
   }
 ?>
