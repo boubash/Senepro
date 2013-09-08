@@ -1,34 +1,28 @@
 <?php
- include("connexion.php");
-  //récupération des valeurs des champs:
- 
-  $nomc=$_POST['nom'] ;
-$pnomc=$_POST['pnom'] ;
- $adrc=$_POST['adr'] ;
+ include("conexion.php");
 
+        $designat=$_POST['designation'] ;
+
+        $pri=$_POST['prix'] ;
+      
+        $id= $_POST['id_mat'] ;
  
-  //récupération du numero :
-  $id= $_POST['id_materiel'] ;
- 
-  //création de la requête SQL:
-  $sql = "UPDATE materiel
-            SET designation='$designationc', 
-                       Prix='$prix', 
+        $sql = "UPDATE materiel
+                  SET designation='$designat', 
+                       prix='$pri'
 	          
-           WHERE matricule='$id' " ;
+           WHERE id_materiel=$id " ;
+           echo $sql;
+  $exe=mysql_query($sql);
  
-  //exécution de la requête SQL:
-  $exe=mysql_query($sql);;
- 
- 
-  //affichage des résultats, pour savoir si la modification a marchée:
   if($exe)
   {
-    echo("La modification à été correctement effectuée") ;
-include("modification-materiel1.php.php");
+    // redirection vers la page index du materiel
+    header("Location: materiel.php?message=modification enregistrée");
   }
   else
   {
-    echo("La modification à échouée") ;
+    echo("La modification a échoué") ;
+    echo mysql_error();
   }
 ?>

@@ -1,4 +1,4 @@
-<?php include('header.php') ?>
+﻿
 
 
 <?php
@@ -14,24 +14,39 @@
           {
   ?>
 
+  <?php include('header.php') ?>
+  <div class='container'>
+  
+  <div class='row'>
+      <div class='span9'><h1>Modification matériel</h1></div>
+      <div class='span3'>
+  
+        <a href='nouveau-materiel.php' class='btn btn-success pull-right' >
+          <i class='icon-plus'></i>
+
+          Nouveau materiel 
+        </a>
+      </div>
+  </div>
+
         <form name="insertion" action="modification-materiel2.php" method="POST">
 
-          <input type="hidden" name="num" value="<?php echo $id_materiel ;?>">
+          <input type="hidden" name="id_mat" value="<?php echo $_GET['matricule'] ;?>">
 
-          <table class='table table-bordered'>
+          <table class='table table-condenced'>
 
-             <tr align="center">
-                <td>d&aecut;signation</td>
-                <td><input type="text" name="designation" value="<?php echo $l[1] ;?>"></td>
+             <tr>
+                <th>designation</th>
+                <th><input type="text" name="designation" value="<?php echo $l[1] ;?>"></th>
             </tr>
 
-               <tr align="center">
-                 <td>prix</td>
-                 <td><input type="text" name="prix" value="<?php echo $l[2] ;?>"></td>
+               <tr >
+                 <th>prix</th>
+                 <th><input type="text" name="prix" value="<?php echo $l[2] ;?>"></th>
                </tr>
     
-               <tr align="center">
-                 <td colspan="2"><input type="submit" value="modifier"></td>
+               <tr >
+                 <th ><input type="submit" class="btn btn-success pull-right" value="modifier"></th>
                </tr>
 
           </table>
