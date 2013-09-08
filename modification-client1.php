@@ -1,4 +1,4 @@
-<?php include('header.php') ?>
+﻿
 
  <?php
    include("conexion.php");
@@ -12,37 +12,51 @@
             if($l=mysql_fetch_array($exe))
           {
   ?>
+        <?php include('header.php') ?>
 
-        <form method="POST" name="insertion" action="modification-client2.php" >
+        <div class=container>
 
-          <input type="hidden" name="id_client" value="<?php echo $id_client ;?>">
+                         <div class="row">
 
-          <table class='table table-bordered'>
+                            <div class="span9"><h1>Modification Client</h1></div>
 
-              <tr >
-                <td>Nom</td>
-                <td><input type="text" name="nom" value="<?php echo $l['1'] ;?>"></td>
-              </tr>
+                             <div class="span3"><a href="nouveau-client.php" class="btn btn-success pull-right">
+                                    <i class='icon-plus'></i>
+                                    Nouveau client
+                             </a>
+                           </div>
+                         </div>
+                      <form method="POST" name="insertion" action="modification-client2.php" >
 
-              <tr >
-                <td>Prenom</td>
-                <td><input type="text" name="prenom" value="<?php echo $l['2'] ;?>"></td>
-              </tr>
-             
-             <tr >
-                <td>Adresse</td>
-                <td><input type="text" name="adresse" value="<?php echo $l['3'] ;?>"></td>
-              </tr>
+                        <input type="hidden" name="id_cli" value="<?php echo $_GET['matricule'] ;?>">
 
-              <tr >
-                <td>t&aecut;l&aecut;phone</td>
-                <td><input type="text" name="telephone" value="<?php echo $l['4'] ;?>"></td>
-              </tr>
+                        <table class='table table-condensed'>
 
-              <tr >
-                <td ><input type="submit" value="modifier"></td>
-              </tr>
+                            <tr >
+                              <th>Nom</th>
+                              <th><input type="text" name="nom" value="<?php echo $l['1'] ;?>"></th>
+                            </tr>
 
+                            <tr >
+                              <th>Prenom</th>
+                              <th><input type="text" name="prenom" value="<?php echo $l['2'] ;?>"></th>
+                            </tr>
+                           
+                           <tr >
+                              <th>Adresse</th>
+                              <td><input type="text" name="adresse" value="<?php echo $l['3'] ;?>"></td>
+                            </tr>
+
+                            <tr >
+                              <th>téléphone</th>
+                              <th><input type="text" name="telephone" value="<?php echo $l['4'] ;?>"></th>
+                            </tr>
+
+                            <tr lign="center">
+                              <th a ><input type="submit" class="btn btn-success pull-right" value="modifier"></th>
+                            </tr>
+
+            </div>
           </table>
         </form>
   <?php
