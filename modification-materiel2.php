@@ -18,7 +18,7 @@
   if($exe)
   {
     // redirection vers la page index du materiel
-    header("Location: materiel.php?message=modification enregistrée");
+    header("Location: materiel.php?message=modifié avec succé!!!.");
   }
   else
   {
