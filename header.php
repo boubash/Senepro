@@ -2,6 +2,7 @@
 
 	<head>
 		<link rel='stylesheet' href='css/bootstrap.css' type="text/css" />
+		<title>SENEPRO</title>
 	</head>
 	
 	<body>
