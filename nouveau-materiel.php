@@ -3,10 +3,17 @@
 	{
 
 		include("conexion.php");
+
 		extract($_POST);
+		
+
+$prix= number_format($prix, 2, ',', ' ') ; 
+
 		$req="insert into materiel values('','$designation','$prix')";
+
 		$exe=mysql_query($req);
-		header("Location:materiel.php");
+		
+		header("Location:ajout-commande.php");
 	}
 ?>
 
@@ -29,16 +36,17 @@
 	
 	</div>
 
-		<form method="post" class="form-inline" role="form">
+		<form method="POST" class="form-inline" role="form" >
+<pre>
 							                     
 			<input type="hidden" name="id_materiel">
 			
-			<input type="text" name="designation" placeholder="Desiagnation" >
+					  Désignation <input type="text" name="designation" placeholder="Designation" >
 
-		    <input type="text" name="prix" placeholder="PRIX" >
-								
-	        <input type="submit" class="btn btn-success" name="ok" value="Ajouter"> 
-
+					         Prix  <input type="text" name="prix" placeholder="PRIX" >
+												
+					                         <input type="submit" class="btn btn-success" name="ok" value="Ajouter"> 
+</pre>
 		</form>
 </div>
 

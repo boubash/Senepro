@@ -4,11 +4,13 @@
 		include("conexion.php");
 
 		extract($_POST);
+		
+$tel = wordwrap ($tel, 2, ' ', 3);
 
 		$req="insert into client values('','$nom','$pnom','$adr','$tel')";
 
 		$exe=mysql_query($req);
-		header("Location:client.php");
+		header("Location:nouveau-materiel.php");
 		
 	}
 ?>
@@ -26,20 +28,21 @@
 	
 	</div>
 	 
-	<form method="post" class="form-inline" role="form">
+<form method="POST" class="form-inline" role="form" >
+<pre>
 
-				<input type="hidden" name="id_client" >
+						<input type="hidden" name="id_client" >
 
-			    <input type="text" name="nom" class="input-large" placeholder="Nom:">
-				
-				<input type="text" name="pnom" class="input-large" placeholder="Prenom:">
-			
-				<input type="text" name="adr" class="input-large" placeholder="Adresse:">
-				
-				<input type="text" name="tel" class="input-large" placeholder="Téléphone:">
+					Nom    <input type="text" name="nom" class="input-large" placeholder="Nom:">
+						
+					Prenom	<input type="text" name="pnom" class="input-large" placeholder="Prenom:">
+					
+					adresse	<input type="text" name="adr" class="input-large" placeholder="Adresse:">
+						
+			              Telephone <input type="text" name="tel" class="input-large" placeholder="Téléphone:">
 
-				<input type="submit" class="btn btn-success" name="ok" value="Ajouter">  
-
+						        <input type="submit" class="btn btn-success" name="ok" value="Ajouter">  
+</pre>
     </form>
 </div>
 
