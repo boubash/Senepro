@@ -1,4 +1,4 @@
-﻿<?php include('header.php') ?>
+<?php include('header.php') ?>
 
 
 <div class='container'>
@@ -17,13 +17,12 @@
 		   </div>
     </div>
 	
-		<table class='table table-bordered'>
-			<tr>
+		<table class='table table-striped'>
+			<tr aligne="center">
+
 			    <th>Client</th>
 				<th>Date commande</th>
 				<th>Date livraison</th>
-				<th>Début Nettoyage</th>
-				<th>Livraison</th>
 				<th>Avance</th>
 				<th>Action</th>
 			</tr>
@@ -38,15 +37,20 @@
 
                while($l=mysql_fetch_array($exe))
                {
+
+
+               	$requette="SELECT nom, prenom FROM client WHERE id_client=$l[4]";
+               	$execute=mysql_query($requette);
+               	$ligne=mysql_fetch_assoc($execute);
+
                		echo"<tr>
-               				<th>".$l[1]."</th>
+               		        <th>".$ligne['nom']. ' ' .$ligne['prenom']. "</th>
+               				<th><a href=\"detail-commande.php?id_commande=".$l[0]."\">".$l[1]."</a></th>
                				<th>".$l[2]."</th>
                				<th>".$l[3]."</th>
-               				<th>".$l[4]."</th>
-               				<th>".$l[5]."</th>
-               				<th>".$l[6]."</th>
-               				<th><a href=\"modification-commande1.php?matricule=".$l[0]."\"><img src=\"img/b_edit.png\">\"title\"=\"modifier\"</a></th>
-               				<th><a href=\"supression-commande.php?matricule=".$l[0]."\" onclick=\"return(confirm('etes vous de vouloir supprimer cette table?'))\"><img src=\"img/img/b_drop.png\"title=\"supprimer\"></a></th>
+         
+               				<th><a href=\"modification-commande1.php?matricule=".$l[0]."\"><img src=\"img/b_edit.png\"title=\"modifier\"></a></th>
+               				<th><a href=\"suppression-commande.php?matricule=".$l[0]."\" onclick=\"return(confirm('etes vous de vouloir supprimer cette table?'))\"><img src=\"img/b_drop.png\"title=\"supprimer\"></a></th>
                		    </tr>";
 
                }
