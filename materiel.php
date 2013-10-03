@@ -14,10 +14,8 @@
 				</a>
 			</div>
 	</div>
-	<?php if($_GET && $_GET['message']): //test si la variable GET est définie ?>
-		<div class="alert alert-success"><?php echo $_GET['message'] ?></div>		
-	<?php endif ?>
-	<table class='table table-bordered'>
+	
+	<table class='table table-striped'>
 			<tr>
 				
 				<th>#</th>
