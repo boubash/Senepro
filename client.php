@@ -12,8 +12,11 @@
 			</div>			
 		</div>
 
-	
-		<table class="table table-bordered">
+		<?php if($_GET && $_GET['message']):?>
+		<div class="alert alert-success"><?php echo $_GET['message'] ?></div>		
+	<?php endif ?>
+			
+		<table class="table table-striped">
 			<tr class="warning">
 				<th>nom</th>
 				<th>pr&eacute;nom</th>
