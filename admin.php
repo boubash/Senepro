@@ -77,73 +77,73 @@
 
 <div class="container">
 
-		<h1>Rapport de la QUINZAINE</h1>
+	<h1>Rapport de la QUINZAINE</h1>
 
-		<div class="row">
+	<div class="row">
 
-			<div class="span6">
-				<table class='table table-bordered table-entree' >
-					<tr>
-						<th colspan='2'>ENTREES</th>
-					</tr>
-					<tr>
-						<th>Client</th>
-						<th>Montant</th>
-					</tr>
-					<?php if(!empty($commandes)): ?>
-						<?php foreach ($commandes as $key => $commande): ?>
-							<?php $total_commandes += $commande['montant'] ?>
-							<tr>
-								<td><?php echo $commande['nom']. " " . $commande['prenom'] ?></td>
-								<td><?php echo $commande['montant'] ?></td>
-							</tr>
-						<?php endforeach ?>	
-					<?php else: ?>
-						<tr><th colspan='2'>PAS DE COMMANDE POUR CETTE PERIODE!</th></tr>
-					<?php endif ?>
-
-					<tr>
-						<th>TOTAL DES ENTREES: </th>
-						<th><?php echo $total_commandes; ?></th>
-					</tr>
-
-				</table>
-			</div>
-
-			<div class="span6">
-				<table class='table table-bordered table-sortie'>
-					<tr>
-						<th colspan='2'>SORTIES</th>
-					</tr>
-					<tr>
-						<td>désignation</td>
-						<td>montant</td>
-					</tr>
-					<?php if (empty($depenses)): ?>
-						
-					<?php else: ?>
-						<?php foreach ($depenses as $key => $depense): ?>
-						<?php $total_depenses += $depense['montant']; ?>
-							<tr>
-								<td><?php echo $depense['designation']; ?></td>
-								<td><?php echo $depense['montant']; ?></td>
-							</tr>
-						<?php endforeach ?>
+		<div class="span6">
+			<table class='table table-bordered table-entree' >
+				<tr>
+					<th colspan='2'>ENTREES</th>
+				</tr>
+				<tr>
+					<th>Client</th>
+					<th>Montant</th>
+				</tr>
+				<?php if(!empty($commandes)): ?>
+					<?php foreach ($commandes as $key => $commande): ?>
+						<?php $total_commandes += $commande['montant'] ?>
 						<tr>
-							<td>TOTAL DEPENSES</td>
-							<td><?php echo $total_depenses; ?></td>
+							<td><?php echo $commande['nom']. " " . $commande['prenom'] ?></td>
+							<td><?php echo $commande['montant'] ?></td>
 						</tr>
-					<?php endif ?>
-				</table>
-			</div>
+					<?php endforeach ?>	
+				<?php else: ?>
+					<tr><th colspan='2'>PAS DE COMMANDE POUR CETTE PERIODE!</th></tr>
+				<?php endif ?>
 
+				<tr>
+					<th>TOTAL DES ENTREES: </th>
+					<th><?php echo $total_commandes; ?></th>
+				</tr>
+
+			</table>
 		</div>
-		<?php $resultat = $total_commandes - $total_depenses ?>
-		<?php if ($resultat>=0):?>
-					<h5 class="alert alert-success">Votre résultat de la période est un bénéfice de : <?php echo $resultat; ?></h5>		
-		<?php else: ?>
-			<h5 class="alert alert-warning">Votre résultat de la période est une perte de : <?php echo $resultat; ?></h5>
-		<?php endif ?>
+
+		<div class="span6">
+			<table class='table table-bordered table-sortie'>
+				<tr>
+					<th colspan='2'>SORTIES</th>
+				</tr>
+				<tr>
+					<td>désignation</td>
+					<td>montant</td>
+				</tr>
+				<?php if (empty($depenses)): ?>
+					
+				<?php else: ?>
+					<?php foreach ($depenses as $key => $depense): ?>
+					<?php $total_depenses += $depense['montant']; ?>
+						<tr>
+							<td><?php echo $depense['designation']; ?></td>
+							<td><?php echo $depense['montant']; ?></td>
+						</tr>
+					<?php endforeach ?>
+					<tr>
+						<td>TOTAL DEPENSES</td>
+						<td><?php echo $total_depenses; ?></td>
+					</tr>
+				<?php endif ?>
+			</table>
+		</div>
+
+	</div>
+	<?php $resultat = $total_commandes - $total_depenses ?>
+	<?php if ($resultat>=0):?>
+				<h5 class="alert alert-success">Votre résultat de la période est un bénéfice de : <?php echo $resultat; ?></h5>		
+	<?php else: ?>
+		<h5 class="alert alert-warning">Votre résultat de la période est une perte de : <?php echo $resultat; ?></h5>
+	<?php endif ?>
 
 </div>
 

@@ -1,39 +1,44 @@
 ﻿<?php include('header.php') ?>
 
 <div class="container">
-	<div class="btn-group">
-	
-		<a href="nouveau-client.php" class="btn btn-warning">
-				<i class='icon-pencil'></i>
-				nouveau Client
-		</a>
-		
-		<a href="nouveau-materiel.php" class="btn btn-success">
+	<div class="row">
+		<div class="span8">
+			<div class="btn-group">
 			
-				<i class='icon-pencil'></i>
-				nouveau Materiel
-			
-		</a>
-		<a href="ajout-commande.php" class="btn btn-info">
-			
-				<i class='icon-pencil'></i>
-				nouvelle Commande
-		</a>
-		<a href="ajout-depense.php" class="btn btn-default">
-				<i class='icon-pencil'></i>
-				nouvelle Depense
-		</a>
+				<a href="nouveau-client.php" class="btn btn-warning">
+						<i class='icon-pencil'></i>
+						nouveau Client
+				</a>
 				
-	</div>
-	<div class='row'>
-		<div class="span9"><h2>Les livraisons du jour.</h2></div>
-		<div class="span3"> 
+				<a href="nouveau-materiel.php" class="btn btn-success">
+					
+						<i class='icon-pencil'></i>
+						nouveau Materiel
+					
+				</a>
+				<a href="ajout-commande.php" class="btn btn-info">
+					
+						<i class='icon-pencil'></i>
+						nouvelle Commande
+				</a>
+				<a href="ajout-depense.php" class="btn btn-default">
+						<i class='icon-pencil'></i>
+						nouvelle Depense
+				</a>	
+			</div>
+		</div>
+		<div class="span4">	
 			<div class="pull-right">
 				<form class="navbar-search pull-right">
 					<input type="text" name="recherche" class="search-query" placeholder="Rechercher un client">
 				</form>
-			</div>
-		</div>
+			</div>		
+		</div>	
+	</div>
+	
+	<div class='row'>
+		<div class="span9"><h2>Les livraisons du jour.</h2></div>
+		<div class="span3"> </div>
 	</div>		
 	<table class="table table-striped">
 		<tr class="warning">
