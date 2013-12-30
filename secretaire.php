@@ -5,23 +5,23 @@
 		<div class="span8">
 			<div class="btn-group">
 			
-				<a href="nouveau-client.php" class="btn btn-warning">
+				<a href="nouveau-client.php" class="btn btn-default">
 						<i class='icon-pencil'></i>
 						nouveau Client
 				</a>
 				
-				<a href="nouveau-materiel.php" class="btn btn-success">
+				<a href="nouveau-materiel.php" class="btn btn-info">
 					
 						<i class='icon-pencil'></i>
 						nouveau Materiel
 					
 				</a>
-				<a href="ajout-commande.php" class="btn btn-info">
+				<a href="ajout-commande.php" class="btn btn-default">
 					
 						<i class='icon-pencil'></i>
 						nouvelle Commande
 				</a>
-				<a href="ajout-depense.php" class="btn btn-default">
+				<a href="ajout-depense.php" class="btn btn-info">
 						<i class='icon-pencil'></i>
 						nouvelle Depense
 				</a>	
