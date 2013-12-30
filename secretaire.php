@@ -1,45 +1,29 @@
 ﻿<?php include('header.php') ?>
 
 <div class="container">
-	<div class="row">
+	<div class="btn-group">
 	
-		<div class="span6">
-			<a href="nouveau-client.php">
-				<button type="submit" name="client" class="btn btn-success btn-block ">
-					<i class='icon-pencil'></i>
-					nouveau Client
-				</button>
-			</a>
-			<br>
-			<br>
-			<a href="nouveau-materiel.php">
-				<button type="submit" name="materiel" class="btn btn-default btn-block ">
-					<i class='icon-pencil'></i>
-					nouveau Materiel
-				</button>
-			</a>			
-			<br>
-			<br>
-		</div>
-	
-		<div class="span6">
-			<a href="ajout-commande.php">
-				<button type="submit" name="materiel" class="btn btn-info btn-block">
-					<i class='icon-pencil'></i>
-					nouvelle Commande
-				</button>
-			</a>
-			<br>
-			<br>
-			<a href="ajout-depense.php">
-				<button type="submit" name="materiel" class="btn btn-warning btn-block">
-					<i class='icon-pencil'></i>
-					nouvelle Depense
-				</button>
-			</a>
-			<br>
-			<br>
-		</div>	
+		<a href="nouveau-client.php" class="btn btn-warning">
+				<i class='icon-pencil'></i>
+				nouveau Client
+		</a>
+		
+		<a href="nouveau-materiel.php" class="btn btn-success">
+			
+				<i class='icon-pencil'></i>
+				nouveau Materiel
+			
+		</a>
+		<a href="ajout-commande.php" class="btn btn-info">
+			
+				<i class='icon-pencil'></i>
+				nouvelle Commande
+		</a>
+		<a href="ajout-depense.php" class="btn btn-default">
+				<i class='icon-pencil'></i>
+				nouvelle Depense
+		</a>
+				
 	</div>
 	<div class='row'>
 		<div class="span9"><h2>Les livraisons du jour.</h2></div>
