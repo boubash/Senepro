@@ -36,7 +36,7 @@
 					    <th><?php echo $l['0'] ?>..</th>
 					    <th><?php echo $l['1'] ?> </th>
 					    <th><?php echo $l['2'] ?> </th>
-					    <th><?php echo $l['3'] ?></th>
+					    <th><?php echo date('d F Y', strtotime($l['3'])) ?></th>
 					    <th>
 					    	<a href = 'modification-depense1.php?matricule=<?php echo $l['id_depense'] ?>'><img src="img/b_edit.png" title="Modifier">
 					    		modifier

@@ -55,22 +55,21 @@
         ?>               
                
      		<tr>	               		       
-     		    <th>
+     		    <td>
      		    	<?php echo $ligne['prenom'] ?> <?php echo ' ' ?> <?php echo $ligne['nom'] ?>
-     		    </th>
+     		    </td>
      		    <th>
-     		    	<a href='detail-commande.php?id_commande=<?php echo $l['id_commande'] ?>'>
-     		    	
-     		    		<?php echo $l['1']?>
+     		    	<a href='detail-commande.php?id_commande=<?php echo $l['id_commande'] ?>'>     		    	
+     		    		<?php echo date('d F Y', strtotime($l['1'])) ?>
      		    	</a>
-     		    </th>
-     			<th>
-     				<?php echo $l['2'] ?>
-     			</th>
-     			<th>
+     		    </td>
+     			<td>
+     				<?php echo date('d F Y', strtotime($l['2'])) ?>
+     			</td>
+     			<td>
             <?php echo $l['3']; ?>
-          </th>	           
-     			<th>
+          </td>	           
+     			<td>
      				<a href = "modification-commande1.php?matricule=<?php echo $l['0'] ?>">
      					<img src = "img/b_edit.png" title = "modifier">
      					modifier
@@ -83,7 +82,7 @@
        					supprimer
        				</a>
             <?php endif ?>  
-          </th>
+          </td>
         </tr>
       <?php endwhile ?>     
     <?php else: ?>

@@ -30,7 +30,7 @@
 				Tél:33 867 19 19
 	    </div>
 		
-	    <div class = "span3" pull-right><h5><?php echo $commande['date_commande']; ?>
+	    <div class = "span3" pull-right><h5><?php echo date('d F Y', strtotime($commande['date_commande'])) ?>
 	    	<h5>
 	    		<br>
 	    		<?php if ($commande['livree'] == 0): ?>
@@ -140,7 +140,7 @@
 		</tr>
 		<?php if($commande['livree'] == 0): ?>	
 			<tr>
-			 	<td colspan = '3'><b class = "pull-left">RV: <?php echo $commande['date_livraison']; ?>
+			 	<td colspan = '3'><b class = "pull-left">RV: <?php echo date('d F Y', strtotime($commande['date_livraison'])) ?>
 			 		</b><span class = "pull-right">RELIQUAT</span>
 			 	</td>
 			 	<td>		 		
@@ -154,7 +154,7 @@
 			 	<td colspan = '3'>
 			 		<b class="pull-left">	
 			 			Livré le: 
-			 			<?php echo $commande['date_livraison']; ?>
+			 			<?php echo date('d F Y', strtotime($commande['date_livraison'])) ?>
 			 		</b>
 			 		<span class="pull-right">
 			 			<?php if ($commande['livree'] == 1): ?>
