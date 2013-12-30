@@ -1,4 +1,4 @@
-<?php
+﻿<?php
   include("conexion.php");
   $id = $_GET["matricule"] ;
   $req = "SELECT * FROM materiel WHERE id_materiel =".$id;
