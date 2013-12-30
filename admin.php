@@ -37,6 +37,7 @@
 	// 
 	// on déclare et initialise le tableau devant contenir les commandes
 	// 
+		$total_commandes = 0; 
 		$commandes = array();
 
 		$sql_comandes = // ajouter un filtre sur les dates
@@ -59,6 +60,7 @@
 	// 
 	// calculer les sorties périodiquement
 	// 
+		$total_depenses=0;
 		$depenses= array();
 		$req = "SELECT SUM(somme) as montant, designation FROM depense GROUP BY designation ORDER BY montant";
 		$exec = mysql_query($req);
@@ -88,9 +90,6 @@
 						<th>Client</th>
 						<th>Montant</th>
 					</tr>
-
-					<?php $total_commandes = 0; ?>
-
 					<?php if(!empty($commandes)): ?>
 						<?php foreach ($commandes as $key => $commande): ?>
 							<?php $total_commandes += $commande['montant'] ?>
@@ -123,7 +122,6 @@
 					<?php if (empty($depenses)): ?>
 						
 					<?php else: ?>
-					<?php $total_depenses=0 ?>
 						<?php foreach ($depenses as $key => $depense): ?>
 						<?php $total_depenses += $depense['montant']; ?>
 							<tr>
@@ -140,7 +138,12 @@
 			</div>
 
 		</div>
-
+		<?php $resultat = $total_commandes - $total_depenses ?>
+		<?php if ($resultat>=0):?>
+					<h5 class="alert alert-success">Votre résultat de la période est un bénéfice de : <?php echo $resultat; ?></h5>		
+		<?php else: ?>
+			<h5 class="alert alert-warning">Votre résultat de la période est une perte de : <?php echo $resultat; ?></h5>
+		<?php endif ?>
 
 </div>
 
