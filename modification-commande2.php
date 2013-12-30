@@ -5,14 +5,12 @@
   $datecommandec=$_POST['datecommande'] ;
   $datelivraisonc=$_POST['datelivraison'] ;
   $avancc=$_POST['avanc'];
-  $clienc=$_POST['clien'];
   $id= $_POST['id_com'] ;
 
-  $sql = "UPDATE client
-            SET datecommande='$datecommandec', 
-                datelivraison='$datelivraisonc', 
-                avanc='$avancc',
-                clien='$clienc'
+  $sql = "UPDATE commande
+            SET date_commande='$datecommandec', 
+                date_livraison='$datelivraisonc', 
+                avance='$avancc'
 	          
            WHERE id_commande=$id";
  
@@ -22,7 +20,7 @@ echo $sql;
  
   if($exe)
   {
-   header("Location:commande.php");
+   header("Location:commande.php?message=la modification a été réussie.");
 
   }
   else

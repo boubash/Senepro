@@ -27,7 +27,8 @@ echo $sql;
   }
   else
   {
-    echo("echec") ;
     echo mysql_error();
+    echo("echec") ;
+  
   }
 ?>

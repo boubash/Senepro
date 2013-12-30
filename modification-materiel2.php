@@ -1,19 +1,18 @@
 <?php
- include("conexion.php");
+  include("conexion.php");
 
-        $designat=$_POST['designation'] ;
+  $designat = $_POST['designation'] ;
 
-        $pri=$_POST['prix'] ;
-      
-        $id= $_POST['id_mat'] ;
- 
-        $sql = "UPDATE materiel
-                  SET designation='$designat', 
-                       prix='$pri'
-	          
-           WHERE id_materiel=$id " ;
-           echo $sql;
-  $exe=mysql_query($sql);
+  $pri = $_POST['prix'] ;
+
+  $id = $_POST['id_mat'] ;
+
+  $sql = "UPDATE materiel
+  SET designation = '$designat', 
+  prix = '$pri' 
+  WHERE id_materiel = $id " ;
+  print_r($sql);
+  $exe = mysql_query($sql);
  
   if($exe)
   {
