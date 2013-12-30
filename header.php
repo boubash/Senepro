@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<link rel='stylesheet' href='css/bootstrap.css' type="text/css" />
+		<link rel='stylesheet' href='css/application.css' type="text/css" />
 		<title>SENEPRO</title>
 	</head>	
 	<body>		
