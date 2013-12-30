@@ -47,48 +47,37 @@
 		<?php 
 			include("conexion.php");
 			$date_du_jour = date("Y-m-d");
-			//$requette = "SELECT * FROM Commande";
-			$req = "SELECT id_commande, id_client, date_livraison, livree FROM commande WHERE date_livraison = '$date_du_jour'";
+			$requette = "SELECT * FROM Commande";
+			$req = "SELECT id_commande, nom, prenom,adresse,telephone, date_livraison, livree FROM commande a, client b WHERE b.id_client= a.id_client and   date_livraison = '$date_du_jour' ";
 			$exec = mysql_query($req);
-			$l = mysql_fetch_assoc($exec);
-			$rec = "SELECT id_client, nom, prenom, adresse, telephone FROM client WHERE id_client = " .$l['id_client'];
-			$exe = mysql_query($rec);
-
+			echo mysql_error();
 		?>	
-		<?php if ($exe): ?>
-			
-			<?php while ($clients = mysql_fetch_assoc($exe)): ?>
-
+	
+		<?php if ($exec): ?>
+		
+			<?php while ($l=mysql_fetch_assoc($exec)): ?>
 				<tr>
-			 		<td>
-			 			<?php echo $clients['nom'] ?>
-			 		</td>			 		 
-			 		<td>
-			 			<?php echo $clients['prenom'] ?>
-			 		</td>			 			
-			 		<td>
-			 			<?php echo $clients['adresse'] ?>
-			 		</td>			 		 
-			 		<td>
-			 			<?php echo $clients['telephone'] ?>
-			 		</td>
+					<td><?php echo $l['nom'] ?></td>
+					<td><?php echo $l['prenom'] ?></td>
+					<td><?php echo $l['adresse'] ?></td>
+					<td><?php echo $l['telephone'] ?></td>
 			 		<?php if ($l['livree'] == 0) : ?>	
-			 			<td>!livrée</td>		 			
+			 			<td> <span class="label label-warning">en attente</span> </td>		 			
 					 	<td>
-					 		<a href='livree-commande.php?id_commande=<?php echo $l['id_commande'] ?>'>
+					 		<a href='detail-commande.php?id_commande=<?php echo $l['id_commande'] ?>'>
 				    			Livrer la commande.
 				    		</a>
 				    	</td>
 				    <?php else : ?>	
-			 			<td>livrée!</td>		 		
+			 			<td><span class="label label-info">en attente</span></td>		 		
 				    	<td>
 					 		<a href='livree-commande.php?id_commande=<?php echo $l['id_commande'] ?>'>
 				    			commande deja livrée
 				    		</a>
 				    	</td>
-				    <?php endif ?>	
-			 	</tr>						
-			<?php endwhile ?>
+				    <?php endif ?>
+				</tr>	
+			<?php endwhile ?>    	
 		<?php else: ?>	
 			<tr>
 	    		<td colspan='5'>
