@@ -53,7 +53,14 @@
 			include("conexion.php");
 			$date_du_jour = date("Y-m-d");
 			$requette = "SELECT * FROM Commande";
-			$req = "SELECT id_commande, nom, prenom,adresse,telephone, date_livraison, livree FROM commande a, client b WHERE b.id_client= a.id_client and   date_livraison = '$date_du_jour' ";
+			$req = "SELECT id_commande, nom, prenom,adresse,telephone, date_livraison, livree FROM
+			commande a, client b WHERE b.id_client= a.id_client and   date_livraison = '$date_du_jour' ";
+			 if (isset($_GET) && !empty($_GET['recherche'])) 
+		    {
+		    	
+				$req="select * from client WHERE nom LIKE '%". $_GET['recherche'] ."%' OR prenom LIKE '%". $_GET['recherche'] ."%'";
+		    } 
+		    else 
 			$exec = mysql_query($req);
 			echo mysql_error();
 		?>	
@@ -74,7 +81,7 @@
 				    		</a>
 				    	</td>
 				    <?php else : ?>	
-			 			<td><span class="label label-info">en attente</span></td>		 		
+			 			<td><span class="label label-info">Livrée</span></td>		 		
 				    	<td>
 					 		<a href='livree-commande.php?id_commande=<?php echo $l['id_commande'] ?>'>
 				    			commande deja livrée

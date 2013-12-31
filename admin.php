@@ -4,24 +4,28 @@
 		<div class="btn-group">
 			<a href="depense.php" class='btn btn-info'>
 					<i class='icon-th-list'></i>
-					Liste des dépenses
+					Liste dépenses
 			</a>
 			<a href="client.php" class='btn btn-info'>
 					<i class='icon-th-list'></i>
-					Liste des clients
+					Liste clients
 			</a>
 
 			<a href="materiel.php" class='btn btn-info'>
 					<i class='icon-th-list'></i>
-					Liste des Materiels
+					Liste Materiels
 			</a>
 			<a href="commande.php" class='btn btn-info'>
 					<i class='icon-th-list'></i>
-					Liste des Commandes
+					Liste Commandes
 			</a>
 			<a href="inscription.php"  class='btn btn-info'>
 					<i class='icon-th-list'></i>
-					Créer Un Utilisateur
+					Créer Utilisateur
+			</a>
+			<a href="commande_livree.php" class='btn btn-info'>
+					<i class='icon-th-list'></i>
+					commande livrée
 			</a>
 		</div>
 </div>
@@ -130,8 +134,8 @@
 						</tr>
 					<?php endforeach ?>
 					<tr>
-						<td>TOTAL DEPENSES</td>
-						<td><?php echo $total_depenses; ?></td>
+						<th>TOTAL DEPENSES<th>
+						<th><?php echo $total_depenses; ?></th>
 					</tr>
 				<?php endif ?>
 			</table>
