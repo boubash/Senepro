@@ -7,6 +7,7 @@
 
 	mysql_query("DELETE FROM commande");
 	mysql_query("DELETE FROM client");
+	mysql_query("DELETE FROM materiel");
 
 	for ($i=0; $i < 20; $i++) { 
 		$prenom = $prenoms[rand(0, count($noms)-1)];
@@ -20,21 +21,31 @@
 		$id_client = mysql_insert_id();
 		$nombre_commandes = rand(1, 5);
 
-		for ($i=0; $i < $nombre_commandes; $i++) { 
+		for ($i=0; $i < $nombre_commandes; $i++) 
+		{ 
 			
 			$date = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") - rand(0, 20),  date("Y")));
 			$date_livraison = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d")+rand(10, 30),  date("Y")));
 			$avance = rand(10000, 100000);
 
-			mysql_query("INSERT INTO commande (date_commande, date_livraison, id_client, avance) VALUES ('$date', '$date_livraison', $id_client, $avance)");
-		
+			mysql_query("INSERT INTO commande (date_commande, date_livraison, id_client, avance) VALUES ('$date', '$date_livraison', '$id_client', '$avance')");
+
+			$designations = array('Moquette','Voiture5place','Voiture4*4';'Tapis','couhette','moquette5m2');
+
 			// recup last id commande
+			$id_commande = mysql_insert_id();
+			//$id_materiel = mysql_insert_id();
 			//boucler et inserer aussi des lignes de commande
+			for ($i=0; $i < 5 ; $i++) 
+			{ 
+				$designation = $designations[rand(0, count($designations)-1)];
+				$prix = rand(5000, 15000);
+
+				mysql_query("INSERT INTO materiel(designation, prix) VALUES ('$designation, '$prix')");
+
+			}
 			// selectionner un index aléatoire dans le tableau des materiels et 
 			// cet id pour pour insérer une ligne de commande
 		}
-
 	}
-
-
- ?>
+?>
