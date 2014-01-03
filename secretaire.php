@@ -55,12 +55,7 @@
 			$requette = "SELECT * FROM Commande";
 			$req = "SELECT id_commande, nom, prenom,adresse,telephone, date_livraison, livree FROM
 			commande a, client b WHERE b.id_client= a.id_client and   date_livraison = '$date_du_jour' ";
-			 if (isset($_GET) && !empty($_GET['recherche'])) 
-		    {
-		    	
-				$req="select * from client WHERE nom LIKE '%". $_GET['recherche'] ."%' OR prenom LIKE '%". $_GET['recherche'] ."%'";
-		    } 
-		    else 
+			
 			$exec = mysql_query($req);
 			echo mysql_error();
 		?>	

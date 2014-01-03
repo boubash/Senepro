@@ -9,20 +9,19 @@
   $id= $_POST['id_cli'] ;
 
   $sql = "UPDATE client
-            SET nom='$nomc', 
-                       prenom='$prenomc', 
-                       adresse='$adressec',
-                       telephone='$telephonec'
-	          
-           WHERE id_client=$id";
+  SET nom='$nomc', 
+  prenom='$prenomc', 
+  adresse='$adressec',
+  telephone='$telephonec'
+  WHERE id_client=$id";
  
-echo $sql;
+ echo $sql;
   $exe=mysql_query($sql);
   
  
   if($exe)
   {
-   header("Location:client.php");
+   header('Location:client.php?message=client modifier avec succes');
 
   }
   else
