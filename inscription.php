@@ -6,20 +6,33 @@
 	 	// initialisation
 	 	$valid = true;  
 		$errors = array();
-
-		if (empty($identifiant)) {
+		if (empty($Nom))
+		{
 			$valid = false;
-			$errors = "identifiant=l'identifiant doit etre remplie";
+			$errors = "Nom=Le nom doit etre rempli";
 		}
-		if (empty($password)) {
+
+		if (empty($Prenom))
+		{
 			$valid = false;
-			$errors .= "&password=Le mot de passe doit etre rempi";
+			$errors .= "&Prenom=Le prenom doit etre rempli";
+		}
+
+		if (empty($identifiant)) 
+		{
+			$valid = false;
+			$errors .= "&identifiant=l'identifiant doit etre rempli";
+		}
+		if (empty($password))
+		{
+			$valid = false;
+			$errors .= "&password=Le mot de passe doit etre rempli";
 		}
 		if (empty($passwords)) {
 			$valid = false;
-			$errors .= "&passwords=Le mot de passe doit etre rempi";
+			$errors .= "&passwords=Le mot de passe doit etre rempli";
 		}
-	 //sha256
+		
 		if($valid)
 		{
 
@@ -28,8 +41,9 @@
 			 	if ($password == $passwords)
 			 	{
 			 		//$password = hash('sha256', $password);
-				 	$req = "insert into login values('','$identifiant','$password','$passwords','')";
+				 	$req = "insert into login values('','$Nom', '$Prenom', '$identifiant','$password','$passwords','$profil')";
 				 	$exe = mysql_query($req);
+				 	print_r($req);
 				 	if ($exe) {
 				 		header("Location:index.php?message=$identifiant inscrit avec succes ");	
 				 	}
@@ -49,8 +63,9 @@
 			}
 		}
 		else
-		{			
-			header("Location:inscription.php?".$errors."&id=$identifiant&mdp=$password&mdps=$passwords");
+		{		
+		echo mysql_error();	
+			header("Location:inscription.php?".$errors."&noms=$Nom&prenoms=$Prenom&id=$identifiant&mdp=$password&mdps=$passwords&login=$profil");
 		}			
 	}
 ?>
@@ -62,7 +77,27 @@
 		<div class="span4"></div>
 		<div class="span4 well">
 			<form method="POST" class="form-inline" role="form" >
-				
+
+				<div class="control-group <?php if(!empty($_GET['Nom'])) echo 'Error' ?>">
+					<label class="control-label">Nom</label>
+					<div class="controls">
+					  <input type="text" name="Nom" placeholder="votre Nom" class='span4' 
+					  	value="<?php if (isset($_GET) && !empty($_GET['noms'])) {echo $_GET['noms']; }?>">
+					  <?php if (!empty($_GET['Nom'])):?> 					 
+						<span class="help-inline"><?php echo $_GET['Nom'] ?></span>
+					  <?php endif ?>
+					</div>
+				</div>
+				<div class="control-group <?php if(!empty($_GET['Prenom'])) echo 'Error' ?>">
+					<label class="control-label">Prenom</label>
+					<div class="controls">
+					  <input type="text" name="Prenom" placeholder="votre prenom" class='span4' 
+					  	value="<?php if (isset($_GET) && !empty($_GET['prenoms'])) {echo $_GET['prenoms']; }?>">
+					  <?php if (!empty($_GET['Prenom'])):?> 					 
+						<span class="help-inline"><?php echo $_GET['Prenom'] ?></span>
+					  <?php endif ?>
+					</div>
+				</div>
 				<div class="control-group <?php if(!empty($_GET['identifiant'])) echo 'Error' ?>">
 					<label class="control-label">Identifiant</label>
 					<div class="controls">
@@ -91,6 +126,13 @@
 					  <?php if (!empty($_GET['passwords'])):?> 					 
 						<span class="help-inline"><?php echo $_GET['passwords'] ?></span>
 					  <?php endif ?>
+					</div>
+				</div>
+				<div class="control-group" >
+					<label class="control-label" >Profil</label>
+					<div class="controls">
+					  <input type="text" name="login" placeholder="Saisir le profil de l'utilisateur" class='span4' 
+					  value="<?php if(isset($_GET) && !empty($_GET['login'])) {echo $_GET['login'];} ?>">
 					</div>
 				</div>
 				<div class="control-group">
