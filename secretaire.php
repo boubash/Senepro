@@ -30,7 +30,7 @@
 		<div class="span4">	
 			<div class="pull-right">
 				<form class="navbar-search pull-right">
-					<input type="text" name="recherche" class="search-query" placeholder="Rechercher un client">
+					<input type="text" name="recherche" class="search-query" placeholder="Rechercher une commande">
 				</form>
 			</div>		
 		</div>	

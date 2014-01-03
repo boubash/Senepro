@@ -41,41 +41,42 @@
 	// 
 	// on déclare et initialise le tableau devant contenir les commandes
 	// 
-		$total_commandes = 0; 
-		$commandes = array();
+	$total_commandes = 0; 
+	$commandes = array();
 
-		$sql_comandes = // ajouter un filtre sur les dates
-		"
-			SELECT date_commande, SUM(nombre * prix) as montant, nom, prenom
-			FROM commande c, ligne_de_commande l, materiel m, client cli
-			WHERE c.id_commande = l.id_commande
-			AND l.id_materiel = m.id_materiel
-			AND c.id_client = cli.id_client
-			GROUP BY cli.id_client
-			ORDER BY montant DESC
-		";
+	$sql_comandes = // ajouter un filtre sur les dates
+	"
+		SELECT date_commande,livree, SUM(nombre * prix) as montant, nom, prenom
+		FROM commande c, ligne_de_commande l, materiel m, client cli
+		WHERE c.id_commande = l.id_commande
+		AND l.id_materiel = m.id_materiel
+		AND c.id_client = cli.id_client
+		AND livree = 1
+		GROUP BY cli.id_client
+		ORDER BY montant DESC
+	";
 
-		$exec = mysql_query($sql_comandes);
+	$exec = mysql_query($sql_comandes);
 
-		while ($commande = mysql_fetch_assoc($exec)) {
-				array_push($commandes, $commande);
-		}
+	while ($commande = mysql_fetch_assoc($exec)) {
+			array_push($commandes, $commande);
+	}
 
-	// 
-	// calculer les sorties périodiquement
-	// 
-		$total_depenses=0;
-		$depenses= array();
-		$req = "SELECT SUM(somme) as montant, designation FROM depense GROUP BY designation ORDER BY montant";
-		$exec = mysql_query($req);
-		echo mysql_error();
-		if ($exec) 
+// 
+// calculer les sorties périodiquement
+// 
+	$total_depenses=0;
+	$depenses= array();
+	$req = "SELECT SUM(somme) as montant, designation FROM depense GROUP BY designation ORDER BY montant";
+	$exec = mysql_query($req);
+	echo mysql_error();
+	if ($exec) 
+	{
+		while ( $depense = mysql_fetch_assoc($exec))
 		{
-			while ( $depense = mysql_fetch_assoc($exec))
-			{
-				array_push($depenses, $depense);	
-			}			
-		}
+			array_push($depenses, $depense);	
+		}			
+	}
 
 ?>
 

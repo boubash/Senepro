@@ -4,96 +4,117 @@
 	<div class='row'>
 		<div class='span6'>
       <h1>Commande Client</h1>
+         
     </div>  
     <div class="span3">
-      <div class="pull-right">
-          <form class="navbar-search pull-right">
-            <input type="text" name="recherche" class="search-query" placeholder="Saisir le numéro du Bon">
-          </form>
-      </div>
-    </div>  	
-		<div class='span3'>
-	    <a href='ajout-commande.php' class='btn btn-success pull-right'>
+      <a href='ajout-commande.php' class='btn btn-success pull-right'>
         <i class='icon-pencil'></i>
-		    Ajouter commande
+        Ajouter commande
       </a>
-      <div class="pull-right">
-        <?php if($_SESSION['profil'] == "admin"): ?>
-          <?php include 'date.php' ?>
-        <?php endif ?>  
-      </div>
+    </div>
+    <div class="span3">
+      
+        <form class='form-search pull-right'>
+          <div class="input-append">
+            <input type="text" name="recherche" class="span2 input-small" placeholder="Numéro du Bon">
+            <button class='btn' id ='recherche'>ok</button>
+          </div>
+        </form>
+       
 	  </div>
   </div>
+	<?php  include 'date.php' ?>
 	
-	<table class='table table-striped'>
-		<tr >
-			<th>Client</th>
-		    <th>Date commande</th> 
-		    <th>Date livraison</th>
-			<th>Avance</th>
-			<th>Action</th>
-		</tr>
-			
+
 		<?php // ajouter les lignes provenant de la base
       include("conexion.php");
-       if (isset($_GET) && !empty($_GET['recherche'])) 
+
+      $commandes = array();
+
+      $req = "SELECT * from commande a, client b WHERE a.id_client = b.id_client ";
+      
+      if (isset($_GET) && !empty($_GET['recherche'])) 
+      {        
+        $req .="AND id_commande=". $_GET['recherche'];
+      } 
+      else 
+      {
+        if (isset($_POST['ok']))
         {
+          if (isset ($_POST['d']))
+          {
+           $d=$_POST['d'];
+          }
+          else
+          {
+            $d="";
+          }
+          if (isset ($_POST['i']))
+          {
+            $i=$_POST['i'];
+          }
+          else
+          {
+            $i="";
+          }
+     
+          if (isset ($_POST['y']))
+          {
+            $y=$_POST['y'];
+          }
+          else
+          {
+            $y="";
+          }
+     
+          if (isset ($_POST['d2']))
+          {
+            $d2=$_POST['d2'];
+          }
+          else
+          {
+            $d2="";
+          }
+     
+          if (isset ($_POST['i2']))
+          {
+            $i2=$_POST['i2'];
+          }
+          else
+          {
+            $i2="";
+          }
+     
+          if (isset ($_POST['y2']))
+          {
+            $y2=$_POST['y2'];
+          }
+          else
+          {
+            $y2="";
+          } 
+     
+          $debut= $y."-".$d."-".$i;
+          $fin= $y2."-".$d2."-".$i2;
+          $debut=date($debut);
+          $fin=date($fin);
+          $req .= "AND date_commande BETWEEN '$debut' AND '$fin' ORDER BY id_commande DESC";
           
-          $req="select * from commande WHERE id_commande=". $_GET['recherche'];
         } 
         else 
         {
-          $req = "SELECT * FROM commande WHERE livree=0";
+          $req .= "AND livree=0";
         }
+      }
+      
       $exe = mysql_query($req);
-    ?>
-    <?php if($exe): ?>	
-      <?php while($l=mysql_fetch_array($exe)): ?>	
-        <?php 	$requette="SELECT nom, prenom FROM client WHERE id_client=$l[4]";
-         	$execute=mysql_query($requette);
-         	$ligne=mysql_fetch_assoc($execute);
-        ?>               
-               
-     		<tr>	               		       
-     		    <td>
-     		    	<?php echo $ligne['prenom'] ?> <?php echo ' ' ?> <?php echo $ligne['nom'] ?>
-     		    </td>
-     		    <th>
-     		    	<a href='detail-commande.php?id_commande=<?php echo $l['id_commande'] ?>'>     		    	
-     		    		<?php echo date('d F Y', strtotime($l['1'])) ?>
-     		    	</a>
-     		    </td>
-     			<td>
-     				<?php echo date('d F Y', strtotime($l['2'])) ?>
-     			</td>
-     			<td>
-            <?php echo $l['3']; ?>
-          </td>	           
-     			<td>
-     				<a href = "modification-commande1.php?matricule=<?php echo $l['0'] ?>">
-     					<img src = "img/b_edit.png" title = "modifier">
-     					modifier
-     				</a>
-     					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     				<?php if($_SESSION['profil'] == "admin"): ?>
-     			
-       				<a href="suppression-commande.php?matricule=<?php echo $l['0'] ?>" onclick="return(confirm('etes vous de vouloir supprimer cette table?'))">
-       					<img src="img/b_drop.png"title="supprimer">
-       					supprimer
-       				</a>
-            <?php endif ?>  
-          </td>
-        </tr>
-      <?php endwhile ?>     
-    <?php else: ?>
-		    <tr>
-		        <td colspan='5'>
-		           <div class='alert'>
-		            	<h4 style='text-align:center'>Ce numéro n'existe pas.</h4 style='text-align:center'>
-		            </div>
-		        </td>
-		    </tr>
-    <?php endif ?>
-	</table>
+
+      while ($commande = mysql_fetch_assoc($exe))
+      {
+        array_push($commandes, $commande);
+      }
+
+      include 'liste-commande.php';
+  ?>	    
 </div>
 <?php include('footer.php') ?> 
