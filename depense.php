@@ -38,12 +38,14 @@
 					    <th><?php echo $l['2'] ?> </th>
 					    <th><?php echo date('d F Y', strtotime($l['3'])) ?></th>
 					    <th>
-					    	<a href = 'modification-depense1.php?matricule=<?php echo $l['id_depense'] ?>'><img src="img/b_edit.png" title="Modifier">
+					    	<a href = 'modification-depense1.php?matricule=<?php echo $l['id_depense'] ?>'>
+					    		<img src="img/b_edit.png" title="Modifier">
 					    		modifier
 					    	</a>
 					    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					    	<?php if($_SESSION['profil'] == "admin"): ?>
-					    	<a href = 'suppression-depense.php?matricule=<?php echo $l['id_depense'] ?>' onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));" >
+					    	<a href = 'suppression-depense.php?matricule=<?php echo $l['id_depense'] ?>' 
+					    		onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));" >
 					    		<img src="img/b_drop.png"title="Supprimer">
 					    		Supprimer
 					    	</a>
