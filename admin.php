@@ -1,33 +1,33 @@
 ﻿<?php include('header.php') ?>
 
 <div class="container">
-		<div class="btn-group">
-			<a href="depense.php" class='btn btn-info'>
-					<i class='icon-th-list'></i>
-					Liste dépenses
-			</a>
-			<a href="client.php" class='btn btn-info'>
-					<i class='icon-th-list'></i>
-					Liste clients
-			</a>
+	<div class="btn-group">
+		<a href="depense.php" class='btn btn-info'>
+				<i class='icon-th-list'></i>
+				Liste dépenses
+		</a>
+		<a href="client.php" class='btn btn-info'>
+				<i class='icon-th-list'></i>
+				Liste clients
+		</a>
 
-			<a href="materiel.php" class='btn btn-info'>
-					<i class='icon-th-list'></i>
-					Liste Materiels
-			</a>
-			<a href="commande.php" class='btn btn-info'>
-					<i class='icon-th-list'></i>
-					Liste Commandes
-			</a>
-			<a href="inscription.php"  class='btn btn-info'>
-					<i class='icon-th-list'></i>
-					Créer Utilisateur
-			</a>
-			<a href="commande_livree.php" class='btn btn-info'>
-					<i class='icon-th-list'></i>
-					commande livrée
-			</a>
-		</div>
+		<a href="materiel.php" class='btn btn-info'>
+				<i class='icon-th-list'></i>
+				Liste Materiels
+		</a>
+		<a href="commande.php" class='btn btn-info'>
+				<i class='icon-th-list'></i>
+				Liste Commandes
+		</a>
+		<a href="inscription.php"  class='btn btn-info'>
+				<i class='icon-th-list'></i>
+				Créer Utilisateur
+		</a>
+		<a href="commande_livree.php" class='btn btn-info'>
+				<i class='icon-th-list'></i>
+				commande livrée
+		</a>
+	</div>
 </div>
 
 <hr>
@@ -81,7 +81,7 @@
 
 <div class="container">
 
-	<h1>Rapport de la QUINZAINE</h1>
+	<h1>Rapport de la QUINZAINE</h1>	<?php //include 'date.php' ?>
 
 	<div class="row">
 
@@ -133,14 +133,13 @@
 							<td><?php echo $depense['montant']; ?></td>
 						</tr>
 					<?php endforeach ?>
-					<tr>
-						<th>TOTAL DEPENSES<th>
+					<tr class="warning">
+						<th>TOTAL DEPENSES</th>
 						<th><?php echo $total_depenses; ?></th>
 					</tr>
 				<?php endif ?>
 			</table>
 		</div>
-
 	</div>
 	<?php $resultat = $total_commandes - $total_depenses ?>
 	<?php if ($resultat>=0):?>
@@ -148,7 +147,6 @@
 	<?php else: ?>
 		<h5 class="alert alert-warning">Votre résultat de la période est une perte de : <?php echo $resultat; ?></h5>
 	<?php endif ?>
-
 </div>
 
 <?php include('footer.php') ?>

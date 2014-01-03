@@ -2,33 +2,25 @@
 <?php include('verifier-session.php') ?>
 <div class='container'>
 	<div class='row'>
-		<div class='span9'><h1>Commande Client</h1> </div>	
+		<div class='span6'>
+      <h1>Commande Client</h1>
+    </div>  
+    <div class="span3">
+      <div class="pull-right">
+          <form class="navbar-search pull-right">
+            <input type="text" name="recherche" class="search-query" placeholder="Saisir le numéro du Bon">
+          </form>
+      </div>
+    </div>  	
 		<div class='span3'>
 	    <a href='ajout-commande.php' class='btn btn-success pull-right'>
         <i class='icon-pencil'></i>
 		    Ajouter commande
       </a>
       <div class="pull-right">
-        <?php 
-          /*if (isset($_POST['recherche']))
-          {
-            extract($_POST);
-            $requette = "SELECT * FROM commande";
-            $execution = mysql_query($requette);
-            if ($execution) 
-            {
-              
-              if ($l['id_commande'] == $recherche) 
-              {
-                header('Location:detail-commande.php?id_commande=$recherche');
-              } 
-              else
-              {
-                header('Location:client.php?messages=Cette commande n\'existe pas encore');
-              }# code...
-            }
-          }  */
-        ?>
+        <?php if($_SESSION['profil'] == "admin"): ?>
+          <?php include 'date.php' ?>
+        <?php endif ?>  
       </div>
 	  </div>
   </div>
@@ -44,7 +36,15 @@
 			
 		<?php // ajouter les lignes provenant de la base
       include("conexion.php");
-      $req = "SELECT * FROM commande WHERE livree=0";
+       if (isset($_GET) && !empty($_GET['recherche'])) 
+        {
+          
+          $req="select * from commande WHERE id_commande=". $_GET['recherche'];
+        } 
+        else 
+        {
+          $req = "SELECT * FROM commande WHERE livree=0";
+        }
       $exe = mysql_query($req);
     ?>
     <?php if($exe): ?>	
@@ -89,7 +89,7 @@
 		    <tr>
 		        <td colspan='5'>
 		           <div class='alert'>
-		            	<h4 style='text-align:center'>Il n'a pas encore eu de commande.</h4 style='text-align:center'>
+		            	<h4 style='text-align:center'>Ce numéro n'existe pas.</h4 style='text-align:center'>
 		            </div>
 		        </td>
 		    </tr>
