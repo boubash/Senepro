@@ -48,6 +48,17 @@
 					 	</td>
 					</tr>
 					<tr >
+						<th>Profil</th>
+					 	<td>
+					 		<input type="text" name="profil" value="<?php echo $logins['profil'] ;?>">
+					 	</td>
+					</tr>
+					<th>Mot de passe</th>
+					 	<td>
+					 		<input type="text" name="password" value="<?php echo $logins['password'] ;?>">
+					 	</td>
+					</tr>
+					<tr >
 						<th>
 							<input type="submit" class="btn btn-info pull-right" value="modifier">
 						</th>

@@ -3,13 +3,17 @@
 	$noms = $_POST['nom'];
 	$prenoms = $_POST['prenom'];
 	$identifiants = $_POST['identifiant'];
+	$profils = $_POST['profil'];
+	$passwords = $_POST['password'];
 	$id = $_POST['id_log'];
 
 	$sql = "UPDATE login SET 
-	Nom = $noms,
-	Prenom = $prenoms,
-	identifiant = $identifiants, 
-	WHERE id_login=$id";
+	Nom = '$noms',
+	Prenom = '$prenoms',
+	identifiant = '$identifiants', 
+	profil = '$profils',
+	password = $passwords
+	WHERE id_login = $id";
 
 	$exe = mysql_query($sql);
 	print_r($sql);
@@ -19,7 +23,7 @@
 	}
 	else
 	{
-		mysql_error();
+		echo mysql_error();
 		echo "erreur";
 	}
 

@@ -14,6 +14,8 @@
 			<th>Nom</th>
 			<th>Prenom</th>
 			<th>Identifiant</th>
+			<th>profil</th>
+			<th>mot de passe</th>
 			<th>Action</th>
 
 		</tr>
@@ -28,6 +30,8 @@
 		 			<td><?php echo $logins['Nom'] ?></td>
 		 			<td><?php echo $logins['Prenom'] ?></td>
 		 			<td><?php echo $logins['identifiant'] ?></td>
+		 			<td><?php echo $logins['profil'] ?></td>
+		 			<td><?php echo $logins['password'] ?></td>
 		 			<td>
 		 				<a href='modificationUtilisateur.php?matricule=<?php echo $logins['id_login'] ?>'>
 		 					<img src="img/b_edit.png" title="Modifier">
