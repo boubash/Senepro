@@ -52,11 +52,17 @@
 		<?php 
 			include("conexion.php");
 			$date_du_jour = date("Y-m-d");
-			$requette = "SELECT * FROM Commande";
-			$req = "SELECT id_commande, nom, prenom,adresse,telephone, date_livraison, livree FROM
-			commande a, client b WHERE b.id_client= a.id_client and   date_livraison = '$date_du_jour' ";
-			
-			$exec = mysql_query($req);
+			$requette = "SELECT id_commande, nom, prenom,adresse,telephone, date_livraison, livree FROM
+			commande a, client b WHERE b.id_client= a.id_client";
+			if (isset($_GET) && !empty($_GET['recherche'])) 
+		    {        
+		       $requette.=" AND id_commande=". $_GET['recherche'];
+		    } 
+		    else
+		    {
+				$requette.=" AND date_livraison = '$date_du_jour' ";
+			}
+			$exec = mysql_query($requette);
 			echo mysql_error();
 		?>	
 	
