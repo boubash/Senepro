@@ -6,3 +6,12 @@
 
 	color:red;
 }
+h1 {
+
+	position: relative;
+	top: -19px;
+}
+input[type='text'] {
+
+	height: 30px;
+}
