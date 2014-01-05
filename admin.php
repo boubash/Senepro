@@ -1,23 +1,10 @@
 ﻿<?php include('header.php') ?>
 
 <div class="container">
-	<div class="btn-group">
-		<a href="depense.php" class='btn btn-info'>
+	<div class="btn-group pull-right">
+		<a href="liste_utilisateur.php" class='btn btn-info'>
 				<i class='icon-th-list'></i>
-				Liste dépenses
-		</a>
-		<a href="client.php" class='btn btn-info'>
-				<i class='icon-th-list'></i>
-				Liste clients
-		</a>
-
-		<a href="materiel.php" class='btn btn-info'>
-				<i class='icon-th-list'></i>
-				Liste Materiels
-		</a>
-		<a href="commande.php" class='btn btn-info'>
-				<i class='icon-th-list'></i>
-				Liste Commandes
+				Liste des utilisateurs
 		</a>
 		<a href="inscription.php"  class='btn btn-info'>
 				<i class='icon-th-list'></i>
@@ -30,17 +17,12 @@
 	</div>
 </div>
 
-<hr>
+
 
 <?php 
 
 	include 'conexion.php';
-
-	// 
-	// calculer les entrées périodiquement
-	// 
 	// on déclare et initialise le tableau devant contenir les commandes
-	// 
 	$total_commandes = 0; 
 	$commandes = array();
 
@@ -51,25 +33,70 @@
 		WHERE c.id_commande = l.id_commande
 		AND l.id_materiel = m.id_materiel
 		AND c.id_client = cli.id_client
-		AND livree = 1
-		GROUP BY cli.id_client
-		ORDER BY montant DESC
 	";
-
-	$exec = mysql_query($sql_comandes);
-
-	while ($commande = mysql_fetch_assoc($exec)) {
-			array_push($commandes, $commande);
-	}
-
-// 
-// calculer les sorties périodiquement
-// 
+	// 
+	// calculer les sorties périodiquement
 	$total_depenses=0;
 	$depenses= array();
-	$req = "SELECT SUM(somme) as montant, designation FROM depense GROUP BY designation ORDER BY montant";
-	$exec = mysql_query($req);
-	echo mysql_error();
+
+	$sql_depenses = "SELECT SUM(somme) as montant, designation FROM depense ";
+
+	if (isset($_GET['ok']))
+	{
+		if (isset($_GET['periode']) && (!empty($_GET['periode'])))
+		{
+			switch ($_GET['periode'])
+			{
+				case 'journalier':
+					$today = date('Y-m-d');
+
+					$sql_comandes .= "AND date_commande='$today'";
+					$sql_depenses .= "WHERE date_de_depense='$today'";
+				break;
+
+				case 'mensuel':
+					$debut = date("Y-m-d", mktime(0, 0, 0, date("m"), 1,   date("Y")));
+					$fin   = date("Y-m-d", mktime(0, 0, 0, date("m"), 31,  date("Y")));
+
+					$sql_comandes .= "AND date_commande BETWEEN '$debut' AND '$fin' ";
+					$sql_depenses .= "WHERE date_de_depense BETWEEN '$debut' AND '$fin' ";
+				break;
+
+				case 'hebdomadaire':
+					$bigin = date("Y-m-d", mktime(0, 0, 0,date("m"),1, date("Y")));
+					$end = date("Y-m-d", mktime(0, 0, 0,date("m"),15, date("Y")));
+
+					$sql_comandes .="AND date_commande BETWEEN '$bigin' And '$end'";
+					$sql_depenses .="WHERE date_de_depense BETWEEN '$bigin' AND '$end'";
+				break;	
+				
+				default:
+					$today = date('Y-m-d');
+					$sql_comandes .= "AND date_commande='$today'";
+					$sql_depenses .= "WHERE date_de_depense='$today'";
+				break;
+			}
+		} 
+	}
+	else
+	{
+
+		$today = date('Y-m-d');
+		$sql_comandes .= "AND date_commande='$today'";
+		$sql_depenses .= "WHERE date_de_depense='$today'";
+	}	
+	$sql_comandes .= " GROUP BY cli.id_client ORDER BY montant DESC" ;
+
+	$sql_depenses .= " GROUP BY designation ORDER BY montant"; 
+
+
+
+	$exec = mysql_query($sql_comandes);
+	while ($commande = mysql_fetch_assoc($exec)) {
+		array_push($commandes, $commande);
+	}
+
+	$exec = mysql_query($sql_depenses);
 	if ($exec) 
 	{
 		while ( $depense = mysql_fetch_assoc($exec))
@@ -81,8 +108,25 @@
 ?>
 
 <div class="container">
+	<hr>
+	<div class="row">
+		<div class="span6"><h1>Rapport Périodique </h1></div>
+		<h1>
+		<div class="span6">
+			
+			<form>
+				<select name="periode">
+					<option value='journalier'>journalier</option>
+					<option value='hebdomadaire'>hebdomadaire</option>
+					<option value='mensuel'>mensuel</option>
+				</select>
 
-	<h1>Rapport de la QUINZAINE</h1>	<?php //include 'date.php' ?>
+				<input type="submit" name="ok" class='btn btn-info' value="choisir">
+			</form>	
+			
+		</div>
+		</h1>
+	</div>
 
 	<div class="row">
 
@@ -125,7 +169,8 @@
 					<td>montant</td>
 				</tr>
 				<?php if (empty($depenses)): ?>
-					
+
+					<tr><th colspan='2'>PAS DE DEPENSE POUR CETTE PERIODE!</th></tr>
 				<?php else: ?>
 					<?php foreach ($depenses as $key => $depense): ?>
 					<?php $total_depenses += $depense['montant']; ?>
@@ -134,11 +179,11 @@
 							<td><?php echo $depense['montant']; ?></td>
 						</tr>
 					<?php endforeach ?>
-					<tr class="warning">
+				<?php endif ?>
+					<tr>
 						<th>TOTAL DEPENSES</th>
 						<th><?php echo $total_depenses; ?></th>
 					</tr>
-				<?php endif ?>
 			</table>
 		</div>
 	</div>
