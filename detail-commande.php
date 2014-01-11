@@ -123,7 +123,7 @@
 		 	</tr>
 		<?php endwhile ?>	
 		<tr>
-			<td colspan = '3'><span class = "pull-right">TOTAL</span></td>
+			<td colspan = '3'><span class = "pull-right">NET A PAYER</span></td>
 			<td>
 			 	<b class = "pull-left">
 			 		<?php echo $total_commande; ?> Fcfa
